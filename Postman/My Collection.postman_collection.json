@@ -1,0 +1,358 @@
+{
+  "info": {
+    "_postman_id": "7bc0ee06-49a1-4b0c-badd-286c368f63b9",
+    "name": "My Collection",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52921080",
+    "_collection_link": "https://go.postman.co/collection/52921080-7bc0ee06-49a1-4b0c-badd-286c368f63b9?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get data",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "postman-echo.com/get",
+          "host": [
+            "postman-echo",
+            "com"
+          ],
+          "path": [
+            "get"
+          ]
+        },
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+      },
+      "response": []
+    },
+    {
+      "name": "Post data",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+              "});",
+              ""
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "postman-echo.com/post",
+          "host": [
+            "postman-echo",
+            "com"
+          ],
+          "path": [
+            "post"
+          ]
+        },
+        "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+      },
+      "response": []
+    },
+    {
+      "name": "1. Obtener Pacientes",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "type": "default"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <ObtenerPacientes xmlns=\"http://tempuri.org/\" />\r\n  </soap:Body>\r\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:44376/ServicioConsultorio.asmx",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "44376",
+          "path": [
+            "ServicioConsultorio.asmx"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Obtener Citas",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "type": "default"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <ObtenerCitas xmlns=\"http://tempuri.org/\" />\r\n  </soap:Body>\r\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:44376/ServicioConsultorio.asmx",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "44376",
+          "path": [
+            "ServicioConsultorio.asmx"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3. Agregar Cita",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "type": "default"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <AgregarCita xmlns=\"http://tempuri.org/\">\r\n  <fecha>2026-08-30T00:00:00</fecha>\r\n  <hora>2026-08-30T10:30:00</hora>\r\n  <motivo>Chequeo general</motivo>\r\n  <tratamiento>Examenes de rutina</tratamiento>\r\n  <estado>true</estado>\r\n  <idPaciente>1</idPaciente>\r\n</AgregarCita>\r\n  </soap:Body>\r\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:44376/ServicioConsultorio.asmx",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "44376",
+          "path": [
+            "ServicioConsultorio.asmx"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4. Actualizar Cita",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "type": "default"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <AgregarCita xmlns=\"http://tempuri.org/\">\r\n  <fecha>2026-08-30T00:00:00</fecha>\r\n  <hora>2026-08-30T10:30:00</hora>\r\n  <motivo>Chequeo general</motivo>\r\n  <tratamiento>Examenes de rutina</tratamiento>\r\n  <estado>true</estado>\r\n  <idPaciente>1</idPaciente>\r\n</AgregarCita>\r\n  </soap:Body>\r\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:44376/ServicioConsultorio.asmx",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "44376",
+          "path": [
+            "ServicioConsultorio.asmx"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5. Eliminar Cita",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "type": "default"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <EliminarCita xmlns=\"http://tempuri.org/\">\r\n  <idCita>1</idCita>\r\n</EliminarCita>\r\n\r\n  </soap:Body>\r\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:44376/ServicioConsultorio.asmx",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "44376",
+          "path": [
+            "ServicioConsultorio.asmx"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6. Obtener Cita",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "type": "default"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n<ObtenerCita xmlns=\"http://tempuri.org/\">\r\n  <idCita>1</idCita>\r\n</ObtenerCita>\r\n\r\n  </soap:Body>\r\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:44376/ServicioConsultorio.asmx",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "44376",
+          "path": [
+            "ServicioConsultorio.asmx"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "7. Obtener Cita por cédula",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "type": "default"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n  <ObtenerCitaPorCedula xmlns=\"http://tempuri.org/\">\r\n  <cedula>1700000000</cedula>\r\n</ObtenerCitaPorCedula>\r\n\r\n  </soap:Body>\r\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:44376/ServicioConsultorio.asmx",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "44376",
+          "path": [
+            "ServicioConsultorio.asmx"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "8. Obtener Cita por tratamiento",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml; charset=utf-8",
+            "type": "default"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n  <ObtenerCitaPorTratamiento xmlns=\"http://tempuri.org/\">\r\n  <tratamiento>Vitaminas</tratamiento>\r\n</ObtenerCitaPorTratamiento>\r\n  </soap:Body>\r\n</soap:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:44376/ServicioConsultorio.asmx",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "44376",
+          "path": [
+            "ServicioConsultorio.asmx"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
